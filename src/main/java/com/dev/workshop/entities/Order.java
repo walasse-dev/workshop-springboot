@@ -47,8 +47,12 @@ public class Order implements Serializable {
         setOrderStatus(orderStatus);
     }
 
-    public BigDecimal total(){
-        return BigDecimal.ONE;
+    public BigDecimal getTotal(){
+        BigDecimal total = BigDecimal.ZERO;
+        for (OrderItem item : items) {
+            total = total.add(item.getSubTotal());
+        }
+        return total;
     }
 
     public Long getId() {
