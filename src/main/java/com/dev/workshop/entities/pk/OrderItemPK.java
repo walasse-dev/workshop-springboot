@@ -10,6 +10,9 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Embedded composite primary key for OrderItem entity.
+ */
 @Embeddable
 public class OrderItemPK implements Serializable {
     @Serial
@@ -23,18 +26,38 @@ public class OrderItemPK implements Serializable {
     @JoinColumn(name = "product_id")
     private Product product;
 
+    /**
+     * Gets the Order part of the primary key.
+     * 
+     * @return the Order
+     */
     public Order getOrder() {
         return order;
     }
 
+    /**
+     * Sets the Order part of the primary key.
+     * 
+     * @param order the Order to set
+     */
     public void setOrder(Order order) {
         this.order = order;
     }
 
+    /**
+     * Gets the Product part of the primary key.
+     * 
+     * @return the Product
+     */
     public Product getProduct() {
         return product;
     }
 
+    /**
+     * Sets the Product part of the primary key.
+     * 
+     * @param product the Product to set
+     */
     public void setProduct(Product product) {
         this.product = product;
     }

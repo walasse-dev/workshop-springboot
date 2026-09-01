@@ -11,6 +11,10 @@ import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Arrays;
 
+/**
+ * Configuration class responsible for populating the database with initial test data
+ * when the application runs under the 'test' profile.
+ */
 @Configuration
 @Profile("test")
 public class TestConfig implements CommandLineRunner {
@@ -20,6 +24,15 @@ public class TestConfig implements CommandLineRunner {
     private final ProductRepository productRepository;
     private final OrderItemRepository orderItemRepository;
 
+    /**
+     * Constructs the TestConfig with required repositories.
+     * 
+     * @param userRepository repository for User entities
+     * @param orderRepository repository for Order entities
+     * @param categoryRepository repository for Category entities
+     * @param productRepository repository for Product entities
+     * @param orderItemRepository repository for OrderItem entities
+     */
     public TestConfig(UserRepository userRepository, OrderRepository orderRepository, CategoryRepository categoryRepository, ProductRepository productRepository, OrderItemRepository orderItemRepository) {
         this.userRepository = userRepository;
         this.orderRepository = orderRepository;
@@ -28,6 +41,12 @@ public class TestConfig implements CommandLineRunner {
         this.orderItemRepository = orderItemRepository;
     }
 
+    /**
+     * Callback used to run the bean initialization and seed the database with mock entities.
+     * 
+     * @param args incoming command line arguments
+     * @throws Exception if an error occurs during seeding
+     */
     @Override
     public void run(String... args) throws Exception {
         User u1 = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");

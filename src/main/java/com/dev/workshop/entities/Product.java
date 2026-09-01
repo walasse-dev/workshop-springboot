@@ -10,6 +10,9 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * Entity representing a Product in the catalog.
+ */
 @Entity
 @Table(name = "tb_product")
 public class Product implements Serializable {
@@ -31,9 +34,21 @@ public class Product implements Serializable {
     @OneToMany(mappedBy = "id.product")
     private Set<OrderItem> items = new HashSet<>();
 
+    /**
+     * Empty constructor.
+     */
     public Product() {
     }
 
+    /**
+     * Constructs a Product with all attributes.
+     * 
+     * @param id product unique identifier
+     * @param name product name
+     * @param description product description
+     * @param price product price
+     * @param imgUrl product image URL
+     */
     public Product(Long id, String name, String description, BigDecimal price, String imgUrl) {
         this.id = id;
         this.name = name;
@@ -42,50 +57,110 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
 
+    /**
+     * Gets product ID.
+     * 
+     * @return product ID
+     */
     public Long getId() {
         return id;
     }
 
+    /**
+     * Sets product ID.
+     * 
+     * @param id product ID to set
+     */
     public void setId(Long id) {
         this.id = id;
     }
 
+    /**
+     * Gets product name.
+     * 
+     * @return product name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets product name.
+     * 
+     * @param name product name to set
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Gets product description.
+     * 
+     * @return product description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Sets product description.
+     * 
+     * @param description product description to set
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
+    /**
+     * Gets product price.
+     * 
+     * @return product price
+     */
     public BigDecimal getPrice() {
         return price;
     }
 
+    /**
+     * Sets product price.
+     * 
+     * @param price product price to set
+     */
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
 
+    /**
+     * Gets product image URL.
+     * 
+     * @return image URL
+     */
     public String getImgUrl() {
         return imgUrl;
     }
 
+    /**
+     * Sets product image URL.
+     * 
+     * @param imgUrl image URL to set
+     */
     public void setImgUrl(String imgUrl) {
         this.imgUrl = imgUrl;
     }
 
+    /**
+     * Gets categories associated with this product.
+     * 
+     * @return set of categories
+     */
     public Set<Category> getCategories() {
         return categories;
     }
 
+    /**
+     * Gets orders containing this product.
+     * 
+     * @return set of orders
+     */
     @JsonIgnore
     public Set<Order> getOrders() {
         Set<Order> set = new HashSet<>();
